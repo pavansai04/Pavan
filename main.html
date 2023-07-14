@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+          margin: 20px;
+          font-family: Arial, sans-serif;
+        }
+        h1 {
+          text-align: center;
+        }
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        .icon {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          vertical-align: middle;
+          margin-right: 5px;
+        }
+      </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Rx</h1>
+        <h2>Patient Information</h2>
+        <table>
+          <tr>
+            <th>Name:</th>
+            <td id="patientName"></td>
+          </tr>
+          <tr>
+            <th>Age:</th>
+            <td id="patientAge"></td>
+          </tr>
+          <tr>
+            <th>Gender:</th>
+            <td id="patientGender"></td>
+          </tr>
+          <tr>
+            <th>Address:</th>
+            <td id="patientAddress"></td>
+          </tr>
+          <tr>
+            <th>Phone:</th>
+            <td id="patientPhone"></td>
+          </tr>
+        </table>
+    
+        <h2>Doctor Information</h2>
+        <table>
+          <tr>
+            <th>Name:</th>
+            <td id="doctorName"></td>
+          </tr>
+          <tr>
+            <th>Specialty:</th>
+            <td id="doctorSpecialty"></td>
+          </tr>
+          <tr>
+            <th>Hospital:</th>
+            <td id="doctorHospital"></td>
+          </tr>
+        </table>
+    
+        <h2>Prescription</h2>
+        <table>
+          <tr>
+            <th>Medication</th>
+            <th>Dosage</th>
+            <th>Frequency</th>
+            <th>Duration</th>
+          </tr>
+          <tbody id="medicationList"></tbody>
+        </table>
+    
+        <h3>Instructions:</h3>
+        <p id="instructions"></p>
+    
+        <h3>Notes:</h3>
+        <p id="notes"></p>
+      </div>
+    <script>
+      var data = {
+      "patient": {
+        "name": "Pavan",
+        "age": 18,
+        "gender": "Male",
+        "address": "Gitam Bengaluru",
+        "phone": "123-456-7890"
+      },
+      "doctor": {
+        "name": "Rajesh",
+        "specialty": "Cardiology",
+        "hospital": "ABC Hospital"
+      },
+      "prescription": {
+        "medications": [
+          {
+            "name": "Aspirin",
+            "dosage": "100 mg",
+            "frequency": "Once daily",
+            "duration": "7 days"
+          },
+          {
+            "name": "Lipitor",
+            "dosage": "20 mg",
+            "frequency": "Once daily",
+            "duration": "30 days"
+          }
+        ],
+        "instructions": "Take medications with food.",
+        "notes": "Avoid strenuous activities."
+      }
+    };
+document.getElementById("patientName").textContent = data.patient.name;
+    document.getElementById("patientAge").textContent = data.patient.age;
+    document.getElementById("patientGender").textContent = data.patient.gender;
+    document.getElementById("patientAddress").textContent = data.patient.address;
+    document.getElementById("patientPhone").textContent = data.patient.phone;
+    document.getElementById("doctorName").textContent = data.doctor.name;
+    document.getElementById("doctorSpecialty").textContent = data.doctor.specialty;
+    document.getElementById("doctorHospital").textContent = data.doctor.hospital;
+
+    
+    var medicationList = document.getElementById("medicationList");
+    data.prescription.medications.forEach(function(medication) {
+      var row = document.createElement("tr");
+      var nameCell = document.createElement("td");
+      nameCell.textContent = medication.name;
+      var dosageCell = document.createElement("td");
+      dosageCell.textContent = medication.dosage;
+      var frequencyCell = document.createElement("td");
+      frequencyCell.textContent = medication.frequency;
+      var durationCell = document.createElement("td");
+      durationCell.textContent = medication.duration;
+      row.appendChild(nameCell);
+      row.appendChild(dosageCell);
+      row.appendChild(frequencyCell);
+      row.appendChild(durationCell);
+      medicationList.appendChild(row);
+    });
+
+    
+    document.getElementById("instructions").textContent = data.prescription.instructions;
+    document.getElementById("notes").textContent = data.prescription.notes;
+</script>
+
+</body>
+</html>
